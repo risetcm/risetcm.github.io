@@ -67,14 +67,26 @@
     var navLinks = document.querySelector('.nav-links');
     if (!navLinks) return;
     var items = navLinks.querySelectorAll('.nav-item');
+    var closeTimer = null;
 
     function closeAll() {
       items.forEach(function (it) { it.classList.remove('open'); });
+    }
+    function cancelScheduledClose() {
+      if (closeTimer) { clearTimeout(closeTimer); closeTimer = null; }
+    }
+    // A short grace period before closing — Firefox can drop the hover
+    // state for one frame while the dropdown's open animation is still
+    // playing, which would otherwise read as the mouse having left.
+    function scheduleClose() {
+      cancelScheduledClose();
+      closeTimer = setTimeout(closeAll, 200);
     }
 
     items.forEach(function (item) {
       var btn = item.querySelector('.nav-link');
       item.addEventListener('mouseenter', function () {
+        cancelScheduledClose();
         closeAll();
         item.classList.add('open');
       });
@@ -88,12 +100,13 @@
       }
     });
 
-    navLinks.addEventListener('mouseleave', closeAll);
+    navLinks.addEventListener('mouseenter', cancelScheduledClose);
+    navLinks.addEventListener('mouseleave', scheduleClose);
     document.addEventListener('click', function (e) {
-      if (!navLinks.contains(e.target)) closeAll();
+      if (!navLinks.contains(e.target)) { cancelScheduledClose(); closeAll(); }
     });
     document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape') closeAll();
+      if (e.key === 'Escape') { cancelScheduledClose(); closeAll(); }
     });
   }
 
