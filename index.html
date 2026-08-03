@@ -50,7 +50,6 @@
         <button class="nav-link" type="button">New Patients<span class="care">⌄</span></button>
         <div class="dropdown">
           <a class="dropdown-link" href="first-visit.html">First Visit</a>
-          <a class="dropdown-link" href="#">Pricing</a>
           <a class="dropdown-link" href="faq.html">FAQ</a>
         </div>
       </div>
@@ -67,7 +66,17 @@
       -->
     </nav>
     <div class="nav-side">
-      <span class="season-chip">Fire · Summer</span>
+      <div class="season-picker">
+        <button class="season-chip" type="button" aria-haspopup="true" aria-expanded="false"><span class="season-chip-label">Fire · Summer</span><span class="season-caret">⌄</span></button>
+        <div class="season-dropdown">
+          <button class="season-option" type="button" data-season="wood">Wood · Spring</button>
+          <button class="season-option" type="button" data-season="fire">Fire · Summer</button>
+          <button class="season-option" type="button" data-season="earth">Earth · Long Summer</button>
+          <button class="season-option" type="button" data-season="metal">Metal · Autumn</button>
+          <button class="season-option" type="button" data-season="water">Water · Winter</button>
+          <a class="season-whats-this" href="seasons.html">What's this?</a>
+        </div>
+      </div>
       <a class="btn btn-primary" href="#book">Book Appointment</a>
       <button class="mobile-toggle" type="button" aria-label="Open menu">☰</button>
     </div>
@@ -76,16 +85,30 @@
 
 <div class="mobile-drawer">
   <div class="mobile-drawer-head">
-    <a class="brand" href="index.html">
-      <img class="brand-mark" src="assets/images/seal-rust.png" alt="Rise seal mark">
-      <span class="brand-text"><span class="brand-name">Rise</span></span>
-    </a>
+    <div class="mobile-drawer-head-left">
+      <a class="brand" href="index.html">
+        <img class="brand-mark" src="assets/images/seal-rust.png" alt="Rise seal mark">
+        <span class="brand-text"><span class="brand-name">Rise</span></span>
+      </a>
+      <div class="season-picker season-picker-mobile">
+        <button class="season-chip" type="button" aria-haspopup="true" aria-expanded="false"><span class="season-chip-label">Fire · Summer</span><span class="season-caret">⌄</span></button>
+        <div class="season-dropdown">
+          <button class="season-option" type="button" data-season="wood">Wood · Spring</button>
+          <button class="season-option" type="button" data-season="fire">Fire · Summer</button>
+          <button class="season-option" type="button" data-season="earth">Earth · Long Summer</button>
+          <button class="season-option" type="button" data-season="metal">Metal · Autumn</button>
+          <button class="season-option" type="button" data-season="water">Water · Winter</button>
+          <a class="season-whats-this" href="seasons.html">What's this?</a>
+        </div>
+      </div>
+    </div>
     <button class="mobile-drawer-close" type="button" aria-label="Close menu">✕</button>
   </div>
   <div class="mobile-drawer-body">
     <div class="m-cta"><a class="btn btn-primary" href="#book"><i class="ti ti-calendar-event"></i>Book Appointment</a></div>
     <nav class="m-nav">
       <a class="m-row m-active" href="index.html"><i class="ti ti-home"></i>Home</a>
+      <a class="m-row" href="about.html"><i class="ti ti-info-circle"></i>About</a>
       <div class="m-divider"></div>
       <div class="m-acc">
         <button class="m-acc-head" type="button"><span class="m-acc-label"><i class="ti ti-heart"></i>How We Help</span><i class="ti ti-chevron-down m-acc-chevron"></i></button>
@@ -112,7 +135,6 @@
         <button class="m-acc-head" type="button"><span class="m-acc-label"><i class="ti ti-user-plus"></i>New Patients</span><i class="ti ti-chevron-down m-acc-chevron"></i></button>
         <div class="m-acc-body">
           <a href="first-visit.html">First Visit</a>
-          <a href="#">Pricing</a>
           <a href="faq.html">FAQ</a>
         </div>
       </div>
@@ -127,8 +149,6 @@
         </div>
       </div>
       -->
-      <div class="m-divider"></div>
-      <a class="m-row" href="about.html"><i class="ti ti-info-circle"></i>About</a>
     </nav>
   </div>
 </div>
@@ -282,7 +302,6 @@
       <div class="footer-col">
         <p class="footer-col-title">New Patients</p>
         <a href="first-visit.html">First Visit</a>
-        <a href="#">Pricing</a>
         <a href="faq.html">FAQ</a>
       </div>
       <!-- Resources — disabled for now, kept for later re-enable
@@ -303,7 +322,7 @@
   </div>
   <div class="footer-bottom">
     <p>© 2026 Rise Traditional Chinese Medicine. All rights reserved.</p>
-    <p>Site palette shifts with the five seasons of Chinese medicine.</p>
+    <p><a href="seasons.html">Site palette shifts with the five seasons of Chinese medicine.</a></p>
   </div>
 </footer>
 

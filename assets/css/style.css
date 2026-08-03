@@ -60,8 +60,19 @@ a:hover{color:var(--primary-dark)}
 .dropdown-link:hover{background:var(--tint);color:var(--primary)}
 .nav-side{display:flex;align-items:center;gap:10px;flex:none;margin-left:auto}
 .nav-side .btn{padding:9px 16px;font-size:13.5px}
-.season-chip{font-size:11px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--primary);border:1px solid var(--line);padding:7px 12px;border-radius:2px;display:none;white-space:nowrap}
-@media(min-width:1240px){.brand-sub{display:block}.season-chip{display:block}}
+.season-picker{position:relative;display:none}
+@media(min-width:1240px){.brand-sub{display:block}.season-picker{display:block}}
+.season-chip{font:inherit;font-size:11px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--primary);background:none;border:1px solid var(--line);padding:7px 12px;border-radius:2px;white-space:nowrap;cursor:pointer;display:inline-flex;align-items:center;gap:6px}
+.season-chip:hover{border-color:var(--primary)}
+.season-caret{font-size:9px;opacity:.7;transition:transform .2s ease;display:inline-block}
+.season-picker.open .season-caret{transform:rotate(180deg)}
+.season-dropdown{position:absolute;top:calc(100% + 6px);right:0;min-width:200px;background:#fff;border-top:2px solid var(--primary);box-shadow:0 18px 36px rgba(20,15,12,.14);padding:8px 0;display:none;flex-direction:column;z-index:50;animation:dropIn .2s cubic-bezier(.16,1,.3,1) both}
+.season-picker.open .season-dropdown{display:flex}
+.season-option{display:block;width:100%;text-align:left;padding:9px 16px;font-size:13px;font-family:'Work Sans',sans-serif;color:var(--ink);background:none;border:none;cursor:pointer}
+.season-option:hover{background:var(--tint);color:var(--primary)}
+.season-option.is-current{color:var(--primary);font-weight:600}
+.season-whats-this{display:block;padding:9px 16px 4px;margin-top:6px;border-top:1px solid var(--line);font-size:11.5px;color:rgba(42,34,32,.5)}
+.season-whats-this:hover{color:var(--primary)}
 .mobile-toggle{display:none;background:none;border:none;font-size:22px;color:var(--ink);cursor:pointer;padding:6px}
 .mobile-drawer{display:none}
 
@@ -84,6 +95,10 @@ a:hover{color:var(--primary-dark)}
   .mobile-drawer.open .m-nav>*:nth-child(8){animation-delay:.38s}
   .mobile-drawer{position:fixed;inset:0;background:var(--paper);flex-direction:column;z-index:60}
   .mobile-drawer-head{display:flex;align-items:center;justify-content:space-between;height:76px;padding:0 24px;border-bottom:1px solid var(--line);flex:none}
+  .mobile-drawer-head-left{display:flex;align-items:center;gap:10px;min-width:0}
+  .season-picker-mobile{display:block}
+  .season-picker-mobile .season-chip{font-size:9px;padding:5px 8px;gap:4px}
+  .season-picker-mobile .season-dropdown{right:auto;left:0;min-width:180px}
   .mobile-drawer-close{background:none;border:none;font-size:26px;line-height:1;color:var(--ink);cursor:pointer;padding:8px}
   .mobile-drawer-body{flex:1;overflow-y:auto;padding:8px 0 16px;display:flex;flex-direction:column}
   .m-cta{padding:16px 20px 4px}

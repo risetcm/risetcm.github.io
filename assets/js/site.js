@@ -36,11 +36,34 @@
     return 'water'; // 11-07 .. 12-31 and 01-01 .. 02-03
   }
 
+  // A visitor can preview a different season via the season picker. That
+  // choice is intentionally session-only (sessionStorage, not localStorage)
+  // — it should never outlive the tab, so the next visit always shows
+  // whatever season it actually is.
+  var SEASON_OVERRIDE_KEY = 'riseSeasonOverride';
+
+  function getSeasonOverride() {
+    try {
+      var v = sessionStorage.getItem(SEASON_OVERRIDE_KEY);
+      return SEASONS[v] ? v : null;
+    } catch (e) {
+      return null;
+    }
+  }
+
+  function setSeasonOverride(key) {
+    try { sessionStorage.setItem(SEASON_OVERRIDE_KEY, key); } catch (e) {}
+  }
+
+  function activeSeasonKey() {
+    return getSeasonOverride() || seasonForDate(new Date());
+  }
+
   function applySeason() {
     var root = document.querySelector('.site');
     if (!root) return;
     var assetRoot = (document.body.getAttribute('data-root') || './') + 'assets/images/';
-    var key = seasonForDate(new Date());
+    var key = activeSeasonKey();
     var s = SEASONS[key] || SEASONS.fire;
 
     root.className = root.className.replace(/\bseason-\S+/g, '').trim() + ' season-' + key;
@@ -49,7 +72,11 @@
       img.src = assetRoot + s.logo;
     });
     document.querySelectorAll('.season-chip').forEach(function (el) {
-      el.textContent = s.label;
+      var label = el.querySelector('.season-chip-label');
+      if (label) label.textContent = s.label;
+    });
+    document.querySelectorAll('.season-option').forEach(function (el) {
+      el.classList.toggle('is-current', el.getAttribute('data-season') === key);
     });
 
     var video = document.querySelector('.hero-video');
@@ -60,6 +87,44 @@
       video.load();
       video.play().catch(function () {});
     }
+  }
+
+  // ── Season picker (desktop chip + mobile drawer-head chip) ──────────────
+  function initSeasonPickers() {
+    var pickers = document.querySelectorAll('.season-picker');
+    if (!pickers.length) return;
+
+    function closeAll() {
+      pickers.forEach(function (p) { p.classList.remove('open'); });
+    }
+
+    pickers.forEach(function (picker) {
+      var trigger = picker.querySelector('.season-chip');
+      if (trigger) {
+        trigger.addEventListener('click', function (e) {
+          e.stopPropagation();
+          var wasOpen = picker.classList.contains('open');
+          closeAll();
+          if (!wasOpen) picker.classList.add('open');
+        });
+      }
+      picker.querySelectorAll('.season-option').forEach(function (opt) {
+        opt.addEventListener('click', function () {
+          setSeasonOverride(opt.getAttribute('data-season'));
+          applySeason();
+          closeAll();
+        });
+      });
+    });
+
+    document.addEventListener('click', function (e) {
+      var inside = false;
+      pickers.forEach(function (p) { if (p.contains(e.target)) inside = true; });
+      if (!inside) closeAll();
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') closeAll();
+    });
   }
 
   // ── Desktop dropdown nav ────────────────────────────────────────────────
@@ -168,6 +233,7 @@
     applySeason();
     initDesktopNav();
     initMobileDrawer();
+    initSeasonPickers();
     initHomeNavScroll();
     initReveal();
   });
