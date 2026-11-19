@@ -10,21 +10,11 @@
   // most a day or two, which isn't worth an astronomical calculation for a
   // color theme). "MMDD" strings compare correctly with plain <= / >=.
   var SEASONS = {
-    wood:  { label: 'Wood · Spring',      logo: 'seal-wood.png',
-      video: 'https://videos.pexels.com/video-files/11920003/11920003-hd_1920_1080_25fps.mp4',
-      poster: 'https://images.pexels.com/videos/11920003/pexels-photo-11920003.jpeg?auto=compress&cs=tinysrgb&h=1080&fit=crop&w=1920' },
-    fire:  { label: 'Fire · Summer',      logo: 'seal-rust.png',
-      video: 'https://videos.pexels.com/video-files/15212046/15212046-hd_1920_1080_24fps.mp4',
-      poster: 'https://images.pexels.com/videos/15212046/agriculture-antioxidant-background-branch-15212046.jpeg?auto=compress&cs=tinysrgb&h=1080&fit=crop&w=1920' },
-    earth: { label: 'Earth · Long Summer', logo: 'seal-earth.png',
-      video: 'https://videos.pexels.com/video-files/11202626/11202626-hd_2560_1440_30fps.mp4',
-      poster: 'https://images.pexels.com/videos/11202626/pexels-photo-11202626.jpeg?auto=compress&cs=tinysrgb&h=1080&fit=crop&w=1920' },
-    metal: { label: 'Metal · Autumn',     logo: 'seal-metal.png',
-      video: 'https://videos.pexels.com/video-files/34684726/14701399_2560_1440_24fps.mp4',
-      poster: 'https://images.pexels.com/videos/34684726/autumn-canada-34684726.jpeg?auto=compress&cs=tinysrgb&h=1080&fit=crop&w=1920' },
-    water: { label: 'Water · Winter',     logo: 'seal-water.png',
-      video: 'https://videos.pexels.com/video-files/34941942/14801356_1080_1920_60fps.mp4',
-      poster: 'https://images.pexels.com/videos/34941942/pexels-photo-34941942.jpeg?auto=compress&cs=tinysrgb&h=1080&fit=crop&w=1920' }
+    wood:  { label: 'Wood · Spring',      logo: 'seal-wood.png' },
+    fire:  { label: 'Fire · Summer',      logo: 'seal-rust.png' },
+    earth: { label: 'Earth · Long Summer', logo: 'seal-earth.png' },
+    metal: { label: 'Metal · Autumn',     logo: 'seal-metal.png' },
+    water: { label: 'Water · Winter',     logo: 'seal-water.png', }
   };
 
   function seasonForDate(date) {
@@ -79,13 +69,20 @@
       el.classList.toggle('is-current', el.getAttribute('data-season') === key);
     });
 
+    // Hero video: compressed copies hosted in assets/video/, one per season.
+    // Only reload when the season's file differs from what the page already
+    // has, so the default video isn't downloaded twice.
     var video = document.querySelector('.hero-video');
     if (video) {
+      var videoRoot = (document.body.getAttribute('data-root') || './') + 'assets/video/';
       var source = video.querySelector('source');
-      if (source) source.src = s.video;
-      video.poster = s.poster;
-      video.load();
-      video.play().catch(function () {});
+      var wanted = videoRoot + key + '.mp4';
+      if (source && source.getAttribute('src') !== wanted) {
+        source.setAttribute('src', wanted);
+        video.setAttribute('poster', videoRoot + key + '-poster.jpg');
+        video.load();
+        video.play().catch(function () {});
+      }
     }
   }
 
