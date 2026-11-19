@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Book Now — Rise Traditional Chinese Medicine</title>
-<meta name="description" content="How to book an appointment at Rise Traditional Chinese Medicine in Manhattan Chinatown, NYC. Saturdays by appointment — email to schedule your visit.">
+<meta name="description" content="How to book an appointment at Rise Traditional Chinese Medicine in Manhattan Chinatown, NYC. Saturdays by appointment — book a new or returning client visit online.">
 <link rel="icon" type="image/png" href="assets/images/seal-rust-180.png">
 <link rel="apple-touch-icon" href="assets/images/seal-rust-180.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -145,7 +145,7 @@
 <section class="page-hero">
   <p class="kicker">New Patients</p>
   <h1>Let's get you on the schedule.</h1>
-  <p>Rise currently sees patients on Saturdays, by appointment, with online booking on the way. In the meantime, reach out directly and I'll help you find a time.</p>
+  <p>Rise sees patients on Saturdays, by appointment. Choose the visit that fits you below and pick a time that works &mdash; or email me if you'd rather book by note.</p>
 </section>
 <div class="condition-banner reveal">
   <div class="banner-photo" style="aspect-ratio:16/6"><img class="photo-fill" src="assets/images/booking.jpg" alt="Book an appointment at Rise" loading="lazy"></div>
@@ -154,13 +154,30 @@
 <section class="section">
   <div class="wrap">
     <div class="section-head left reveal">
-      <p class="kicker">Getting Started</p>
-      <h2>A few quick details</h2>
+      <p class="kicker">Book Online</p>
+      <h2>Choose your visit</h2>
     </div>
-    <div class="symptom-grid">
-      <div class="symptom-item reveal">Email <a href="mailto:dawn.y.wu@gmail.com">dawn.y.wu@gmail.com</a> to request an appointment</div>
-      <div class="symptom-item reveal">Saturdays by appointment — no walk-ins</div>
-      <div class="symptom-item reveal">Located in Manhattan Chinatown, NYC</div>
+    <div class="book-options">
+      <div class="book-card reveal">
+        <p class="book-card-length">90 minutes</p>
+        <h3>New client visit</h3>
+        <p>Your first visit with Rise: a full intake covering your health history and goals, pulse and tongue diagnosis, and your first treatment.</p>
+        <a class="btn btn-primary" href="https://calendar.google.com/appointments/schedules/AcZssZ1cuFehd4auhjc6zbaAH9VkiouaVpwTRj-xnS2gorGb1nBAKUfj1uGFry2k41fCc56R8EoXKi8v" target="_blank" rel="noopener" data-book-target="new" data-book-label="New client visit">Book a new client visit</a>
+      </div>
+      <div class="book-card reveal">
+        <p class="book-card-length">60 minutes</p>
+        <h3>Returning client visit</h3>
+        <p>For patients I've already seen. Follow-up treatment that builds on the plan we've set together.</p>
+        <a class="btn btn-primary" href="https://calendar.google.com/appointments/schedules/AcZssZ0T66drHkqtco8Im6BlmXb2YTpa3XA7F2RKMBTsRIojTk3a7JFmDyx33lbT95W5q-SWWv9Dw_oa" target="_blank" rel="noopener" data-book-target="returning" data-book-label="Returning client visit">Book a returning client visit</a>
+      </div>
+    </div>
+
+    <div class="book-embed" id="book-embed" hidden>
+      <div class="book-embed-head">
+        <p class="book-embed-title" id="book-embed-title"></p>
+        <a class="book-embed-open" id="book-embed-open" href="#" target="_blank" rel="noopener">Open in a new tab &#8599;</a>
+      </div>
+      <iframe id="book-embed-frame" title="Appointment scheduler" loading="lazy" frameborder="0"></iframe>
     </div>
   </div>
 </section>
@@ -168,12 +185,14 @@
 <section class="section section-tint">
   <div class="wrap">
     <div class="section-head left reveal">
-      <p class="kicker">How to Book</p>
-      <h2>Send me a note</h2>
+      <p class="kicker">Good to Know</p>
+      <h2>A few quick details</h2>
     </div>
-    <p class="approach-copy reveal">Email your name and a few Saturday times that work for you, along with a brief note about what brings you in. I'll follow up to confirm your appointment and share the exact address.</p>
-    <div class="tag-list reveal">
-      <a class="tag" href="mailto:dawn.y.wu@gmail.com?subject=Appointment%20Request">dawn.y.wu@gmail.com</a>
+    <div class="symptom-grid">
+      <div class="symptom-item reveal">Saturdays by appointment &mdash; no walk-ins</div>
+      <div class="symptom-item reveal">Located in Manhattan Chinatown, NYC; the exact address is in your confirmation</div>
+      <div class="symptom-item reveal">Not sure which visit to book? Read the <a href="first-visit.html">New Patient Guide</a></div>
+      <div class="symptom-item reveal">Prefer email? Write to <a href="mailto:dawn.y.wu@gmail.com?subject=Appointment%20Request">dawn.y.wu@gmail.com</a> with a few Saturday times that work for you</div>
     </div>
   </div>
 </section>
@@ -186,10 +205,10 @@
 </section>
 
 <section class="cta-band">
-  <h2 class="reveal">Ready to begin your care?</h2>
-  <p class="reveal">New patients are welcome. Email to book, or read what to expect before your first visit.</p>
+  <h2 class="reveal">Questions before you book?</h2>
+  <p class="reveal">I'm happy to talk it through. Send me a note, or read what to expect at your first visit.</p>
   <div class="cta-actions reveal">
-    <a class="btn btn-primary" href="mailto:dawn.y.wu@gmail.com?subject=Appointment%20Request">Email to Book</a>
+    <a class="btn btn-primary" href="mailto:dawn.y.wu@gmail.com?subject=Question%20before%20booking">Email Me</a>
     <a class="btn btn-oncta-ghost" href="first-visit.html">New Patient Guide</a>
   </div>
 </section>

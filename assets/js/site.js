@@ -229,6 +229,27 @@
     els.forEach(function (el) { io.observe(el); });
   }
 
+  function initBookingPicker() {
+    var buttons = document.querySelectorAll('[data-book-target]');
+    var panel = document.getElementById('book-embed');
+    var frame = document.getElementById('book-embed-frame');
+    var title = document.getElementById('book-embed-title');
+    var openLink = document.getElementById('book-embed-open');
+    if (!buttons.length || !panel || !frame) return;
+
+    buttons.forEach(function (btn) {
+      btn.addEventListener('click', function (e) {
+        e.preventDefault();
+        var url = btn.getAttribute('href');
+        frame.src = url + (url.indexOf('?') === -1 ? '?' : '&') + 'gv=true';
+        title.textContent = btn.getAttribute('data-book-label') || 'Appointment scheduler';
+        openLink.href = url;
+        panel.hidden = false;
+        panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    });
+  }
+
   document.addEventListener('DOMContentLoaded', function () {
     applySeason();
     initDesktopNav();
@@ -236,5 +257,6 @@
     initSeasonPickers();
     initHomeNavScroll();
     initReveal();
+    initBookingPicker();
   });
 })();
