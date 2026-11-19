@@ -197,6 +197,7 @@ a:hover{color:var(--primary-dark)}
 .book-embed-head{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 20px;border-bottom:1px solid var(--line)}
 .book-embed-title{margin:0;font-family:'Lora',serif;font-weight:600;font-size:17px}
 .book-embed-open{font-size:13px;white-space:nowrap}
+.book-note{margin:32px 0 0;max-width:680px;font-size:16px;line-height:1.7;color:rgba(42,34,32,.78)}
 .book-embed iframe{display:block;width:100%;height:720px;border:0}
 .approach-copy{max-width:680px;font-size:16px;line-height:1.75;color:rgba(42,34,32,.78);margin:0 0 32px}
 .tag-list{display:flex;gap:12px;flex-wrap:wrap}
